@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "checkJs": false,
+    "baseUrl": "."
+  },
+  "include": [".", "jsconfig.json"],
+  "exclude": ["node_modules", "**/node_modules/*"]
+}
