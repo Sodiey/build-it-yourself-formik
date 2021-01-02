@@ -62,8 +62,6 @@ const UserForm = ({ handleSignUp, isLogin }) => {
                       items={['male', 'female']}
                       label={input}
                       containerStyles={{ marginVertical: 0 }}
-                      placeholder={input}
-                      placeholderTextColor={Colors.INPUT_TEXT}
                       focusNext={initialValuesKeys[i + 1]}
                     />
                   );
@@ -74,12 +72,14 @@ const UserForm = ({ handleSignUp, isLogin }) => {
                     name={input}
                     label={!isLogin && input}
                     containerStyles={{ marginVertical: 10 }}
-                    keyboardType="email-address"
+                    secureTextEntry={input === 'password'}
+                    keyboardType={
+                      input === 'email' ? 'email-address' : 'default'
+                    }
                     placeholder={input}
                     placeholderTextColor={Colors.INPUT_TEXT}
                     focusNext={initialValuesKeys[i + 1]}
                     autoCapitalize="none"
-                    security
                   />
                 );
               })}
