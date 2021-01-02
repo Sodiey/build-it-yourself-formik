@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 //COMPONENTS
 import {
   StyleSheet,
@@ -15,7 +14,7 @@ import UserForm from './components/UserForm';
 import Constants from 'expo-constants';
 import { Colors } from 'theme';
 import login from 'assets/login.png';
-import logo from 'assets/logo.png';
+import logo from 'assets/ninja.png';
 
 import Animated, {
   block,
@@ -62,13 +61,14 @@ const AnimatedImage = Animated.createAnimatedComponent(Image);
 
 const { height } = Dimensions.get('window');
 
-const UserLogin = ({ navigation }) => {
+const UserLogin = () => {
   const animatedValue = new Animated.Value(0);
+  const [isLogin, setIsLogin] = useState(true);
   const clock = new Clock();
   useCode(
     () =>
       block([startClock(clock), set(animatedValue, runTiming(clock, 0, 1))]),
-    []
+    [isLogin]
   );
 
   const translateY = animatedValue.interpolate({
@@ -84,6 +84,9 @@ const UserLogin = ({ navigation }) => {
     inputRange: [0, 1],
     outputColorRange: ['transparent', Colors.WHITE],
   });
+  const handleSignUp = () => {
+    setIsLogin((prev) => !prev);
+  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -99,24 +102,29 @@ const UserLogin = ({ navigation }) => {
         />
       </View>
       <View style={styles.topContainer}>
-        <Image source={logo} />
+        <Image source={logo} style={{ width: 30, height: 30 }} />
+        <CustomText size={16} spacing={{ ml: 10 }} isBold color={Colors.WHITE}>
+          LOGO
+        </CustomText>
       </View>
       <View style={styles.bottomContainer}>
-        <View style={styles.textContainer}>
+        <View style={styles.textContainer(isLogin)}>
           <CustomText size={30} title align="center" color={Colors.WHITE}>
-            Welcome back!
+            {isLogin ? 'Welcome back!' : 'Sign Up Form'}
           </CustomText>
-          <CustomText
-            align="center"
-            size={16}
-            color={Colors.WHITE}
-            spacing={{
-              ph: 20,
-              pt: 10,
-            }}
-          >
-            Access your schedule, book lessons, browse and manage your skills.
-          </CustomText>
+          {isLogin && (
+            <CustomText
+              align="center"
+              size={16}
+              color={Colors.WHITE}
+              spacing={{
+                ph: 20,
+                pt: 10,
+              }}
+            >
+              Access your schedule, book lessons, browse and manage your skills.
+            </CustomText>
+          )}
         </View>
         <KeyboardAvoidingView
           behavior={Platform.OS == 'ios' && 'padding'}
@@ -132,7 +140,7 @@ const UserLogin = ({ navigation }) => {
               },
             ]}
           >
-            <UserForm />
+            <UserForm handleSignUp={handleSignUp} isLogin={isLogin} />
           </Animated.View>
         </KeyboardAvoidingView>
       </View>
@@ -152,22 +160,21 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 40,
   },
   topContainer: {
-    justifyContent: 'flex-end',
+    // justifyContent: 'flex-end',
+    alignItems: 'center',
     marginTop: Constants.statusBarHeight + 10,
     paddingLeft: 20,
     // flex: 0.4,
+    flexDirection: 'row',
   },
   bottomContainer: {
     // flex: 3.6,
     flex: 1,
   },
-  textContainer: {
-    flex: 0.5,
+  textContainer: (isLogin) => ({
+    flex: isLogin ? 0.5 : 0.2,
     justifyContent: 'center',
-    // alignItems: 'center',
-    // paddingTop: height / 8,
-    // paddingBottom: height / 14,
-  },
+  }),
   logInContainer: {
     flex: 1,
     // justifyContent: 'center',

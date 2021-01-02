@@ -7,7 +7,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { LoginButton } from 'components/buttons';
-// import { FloatingButton } from 'components/buttons';
+import { FloatingButton } from 'components/buttons';
 import { Picker } from '@react-native-picker/picker';
 
 import {
@@ -153,24 +153,24 @@ export const FormButton = (props) => {
   );
 };
 
-// export const FormFloatButton = (props) => {
-//   return (
-//     <FormikData.Consumer>
-//       {({ handleSubmit }) => (
-//         <FloatingButton
-//           actions={props.actions}
-//           onPressItem={handleSubmit}
-//           color={props.color}
-//           floatingIcon={
-//             props.loading && (
-//               <ActivityIndicator size="large" color={Colors.WHITE} />
-//             )
-//           }
-//         />
-//       )}
-//     </FormikData.Consumer>
-//   );
-// };
+export const FormFloatButton = (props) => {
+  return (
+    <FormikData.Consumer>
+      {({ handleSubmit }) => (
+        <FloatingButton
+          actions={props.actions}
+          onPressItem={handleSubmit}
+          color={props.color}
+          floatingIcon={
+            props.loading && (
+              <ActivityIndicator size="large" color={Colors.WHITE} />
+            )
+          }
+        />
+      )}
+    </FormikData.Consumer>
+  );
+};
 
 export const CustomFormik = (props) => {
   const [formData, setFormData] = useState({
@@ -216,7 +216,7 @@ export const CustomFormik = (props) => {
         ...prev,
         focused: name,
       }));
-      if (name) fieldRegistry.current[name].ref.focus();
+      if (name) fieldRegistry.current[name]?.ref.focus();
     }
   };
   function setErros(name, message) {
@@ -314,7 +314,7 @@ const styles = StyleSheet.create({
   defaultStyle: {
     borderWidth: 1,
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 8,
     borderRadius: 10,
     color: Colors.TEXT,
     fontSize: FONT_SIZE_INPUT,

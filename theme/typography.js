@@ -15,8 +15,8 @@ export const FONT_WEIGHT_BOLD = '700';
 export const FONT_SIZE_TITLE_LOGIN = scaleFont(24);
 export const FONT_SIZE_TITLE_SCHOOL = scaleFont(20);
 
-export const FONT_SIZE_INPUT = scaleFont(18);
-export const FONT_SIZE_LABEL = scaleFont(19);
+export const FONT_SIZE_INPUT = scaleFont(17);
+export const FONT_SIZE_LABEL = scaleFont(17);
 export const FONT_SIZE_16 = scaleFont(16);
 export const FONT_SIZE_14 = scaleFont(14);
 export const FONT_SIZE_12 = scaleFont(12);

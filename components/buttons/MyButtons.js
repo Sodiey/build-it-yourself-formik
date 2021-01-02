@@ -21,28 +21,22 @@ export const LoginButton = ({
   size,
 }) => {
   return (
-    <>
-      {Platform.OS === 'android' ? (
-        <RectButton
-          onPress={onPress}
-          style={[
-            styles.center,
-            styles.innerBtn,
-            {
-              zIndex: 2,
-              backgroundColor: color,
-              borderRadius: rounded ? 10 : 0,
-              height: size === 'small' ? 40 : 50,
-            },
-          ]}
-          activeOpacity={0.8}
-        >
-          <Text style={[styles.btnText, { color: textColor }]}>{title}</Text>
-        </RectButton>
-      ) : (
-        <Button onPress={onPress} color={color} title={title} />
-      )}
-    </>
+    <RectButton
+      onPress={onPress}
+      style={[
+        styles.center,
+        styles.innerBtn,
+        {
+          zIndex: 2,
+          backgroundColor: color,
+          borderRadius: rounded ? 10 : 0,
+          height: size === 'small' ? 40 : 50,
+        },
+      ]}
+      activeOpacity={0.8}
+    >
+      <Text style={[styles.btnText, { color: textColor }]}>{title}</Text>
+    </RectButton>
   );
 };
 

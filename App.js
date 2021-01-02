@@ -32,6 +32,13 @@ async function _loadAssetsAsync() {
 
 export default function App() {
   const [fontLoaded, setFontLoaded] = useState(false);
+  // const [userData, setUserData] = useState({});
+
+  // const handleSubmitData = (values) =>
+  //   setUserData((prev) => ({
+  //     ...prev,
+  //     ...values,
+  //   }));
 
   if (!fontLoaded) {
     return (
