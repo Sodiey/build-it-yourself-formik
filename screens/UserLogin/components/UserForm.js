@@ -40,7 +40,7 @@ const UserForm = ({ handleSignUp, isLogin }) => {
           handleSignUp();
           return;
         }
-        Alert.alert('Authenticated User', `${values.email} had logged in`, [
+        Alert.alert('Authenticated User', `${values.email} has logged in`, [
           { text: 'okay' },
         ]);
       }}
@@ -79,6 +79,7 @@ const UserForm = ({ handleSignUp, isLogin }) => {
                     placeholderTextColor={Colors.INPUT_TEXT}
                     focusNext={initialValuesKeys[i + 1]}
                     autoCapitalize="none"
+                    security
                   />
                 );
               })}
